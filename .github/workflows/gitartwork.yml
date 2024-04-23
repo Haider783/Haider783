@@ -1,0 +1,22 @@
+name: gitartwork from a contribution graph
+on: 
+  push:
+  schedule:
+    - cron: '0 */24 * * *' # This runs the job every 24 hours
+jobs:
+  build:
+    name: Make gitartwork SVG
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Customize contribution graph
+        uses: jasineri/gitartwork@v1
+        with:
+           user_name: Haider783
+           text: HAIDER
+           svg_file_name: gitartwork.svg # Optional, you can customize the file name here
+      - name: Commit changes
+        uses: jasineri/simple-push-action@v1
+
+permissions:
+  contents: write
